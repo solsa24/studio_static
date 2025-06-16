@@ -4,7 +4,7 @@
 import { useEffect, useState, useCallback } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { MealDetail, MealDBLookupResponse } from '@/types/recipe';
+import type { MealDetail, MealDBLookupResponse } from '@/types/recipe';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
@@ -190,7 +190,7 @@ export default function RecipePage({ params }: RecipePageParams) {
                 {recipe.strInstructions ? (
                   <div 
                     className="prose prose-sm sm:prose-base max-w-none text-foreground leading-relaxed space-y-4"
-                    dangerouslySetInnerHTML={{ __html: recipe.strInstructions.replace(/\n/g, '<br />') }} 
+                    dangerouslySetInnerHTML={{ __html: recipe.strInstructions.replace(/\r\n|\n|\r/g, '<br />') }} 
                   />
                 ) : (
                   <p className="text-muted-foreground">No instructions provided.</p>
@@ -198,12 +198,12 @@ export default function RecipePage({ params }: RecipePageParams) {
               </div>
             </div>
             
-            {recipe.strYoutube && (
+            {recipe.strYoutube && recipe.strYoutube.includes('v=') && (
               <div className="mt-8 pt-6 border-t border-border">
                 <h2 className="text-2xl font-headline font-semibold mb-4 text-primary">Watch Video</h2>
-                <div className="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden shadow">
+                <div className="aspect-video rounded-lg overflow-hidden shadow">
                   <iframe
-                    src={`https://www.youtube.com/embed/${recipe.strYoutube.split('v=')[1]}`}
+                    src={`https://www.youtube.com/embed/${recipe.strYoutube.split('v=')[1].split('&')[0]}`}
                     title={`YouTube video: ${recipe.strMeal}`}
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
@@ -229,29 +229,3 @@ export default function RecipePage({ params }: RecipePageParams) {
     </div>
   );
 }
-
-// Helper for prose styles if not using Tailwind Typography plugin
-// Add this to globals.css or a relevant CSS file if prose classes are not working:
-/*
-@layer base {
-  .prose {
-    @apply text-foreground;
-  }
-  .prose :where(p):not(:where([class~="not-prose"] *)) {
-    @apply my-4;
-  }
-  .prose :where(h2):not(:where([class~="not-prose"] *)) {
-    @apply text-2xl font-semibold mb-3 mt-6 text-primary;
-  }
-  .prose :where(ul):not(:where([class~="not-prose"] *)) {
-    @apply list-disc pl-5 space-y-1 my-4;
-  }
-  .prose :where(ol):not(:where([class~="not-prose"] *)) {
-    @apply list-decimal pl-5 space-y-1 my-4;
-  }
-  .prose :where(strong):not(:where([class~="not-prose"] *)) {
-    @apply font-semibold;
-  }
-}
-*/
-
