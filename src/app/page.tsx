@@ -110,7 +110,7 @@ export default function HomePage() {
 
       <form onSubmit={handleFormSubmit} className="w-full max-w-xl mb-10 sm:mb-12 flex flex-col items-center gap-3">
         <label htmlFor="recipeSearchInput" className="block text-md font-medium text-foreground mb-2 self-start">
-          what do you have in your fridge?
+          What do you have in your fridge?
         </label>
         <div className="w-full flex items-center gap-3">
           <Input
