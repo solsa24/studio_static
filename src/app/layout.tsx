@@ -2,6 +2,7 @@
 import type {Metadata} from 'next';
 import './globals.css';
 import { Toaster } from "@/components/ui/toaster"; 
+import BrandingBadge from '@/components/branding-badge';
 
 export const metadata: Metadata = {
   title: 'Recipe Radar',
@@ -23,6 +24,7 @@ export default function RootLayout({
       <body className="font-body antialiased bg-background text-foreground">
         {children}
         <Toaster />
+        <BrandingBadge />
       </body>
     </html>
   );
