@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState, FormEvent, ChangeEvent, useEffect, useCallback } from 'react';
@@ -107,28 +108,34 @@ export default function HomePage() {
         </p>
       </header>
 
-      <form onSubmit={handleFormSubmit} className="w-full max-w-xl mb-10 sm:mb-12 flex items-center gap-3">
-        <Input
-          type="text"
-          value={searchTerm}
-          onChange={(e: ChangeEvent<HTMLInputElement>) => setSearchTerm(e.target.value)}
-          placeholder="e.g., chicken breast, salmon, broccoli"
-          className="flex-grow !text-base h-12 px-4 rounded-lg shadow-sm focus:ring-2 focus:ring-accent focus:border-accent"
-          aria-label="Search for recipes by ingredient"
-        />
-        <Button 
-          type="submit" 
-          size="lg"
-          className="bg-accent text-accent-foreground h-12 px-6 rounded-lg shadow-md hover:bg-opacity-90 focus-visible:ring-accent transition-colors flex items-center justify-center"
-          disabled={isLoading}
-          aria-label="Search recipes"
-        >
-          {isLoading ? (
-            <Loader2 className="h-5 w-5 animate-spin" />
-          ) : (
-            <Search className="w-5 h-5" />
-          )}
-        </Button>
+      <form onSubmit={handleFormSubmit} className="w-full max-w-xl mb-10 sm:mb-12 flex flex-col items-center gap-3">
+        <label htmlFor="recipeSearchInput" className="block text-md font-medium text-foreground mb-2 self-start">
+          what do you have in your fridge?
+        </label>
+        <div className="w-full flex items-center gap-3">
+          <Input
+            id="recipeSearchInput"
+            type="text"
+            value={searchTerm}
+            onChange={(e: ChangeEvent<HTMLInputElement>) => setSearchTerm(e.target.value)}
+            placeholder="e.g., chicken breast, salmon, broccoli"
+            className="flex-grow !text-base h-12 px-4 rounded-lg shadow-sm focus:ring-2 focus:ring-accent focus:border-accent"
+            aria-label="Search for recipes by ingredient"
+          />
+          <Button 
+            type="submit" 
+            size="lg"
+            className="bg-accent text-accent-foreground h-12 px-6 rounded-lg shadow-md hover:bg-opacity-90 focus-visible:ring-accent transition-colors flex items-center justify-center"
+            disabled={isLoading}
+            aria-label="Search recipes"
+          >
+            {isLoading ? (
+              <Loader2 className="h-5 w-5 animate-spin" />
+            ) : (
+              <Search className="w-5 h-5" />
+            )}
+          </Button>
+        </div>
       </form>
 
       <main className="w-full max-w-7xl">
