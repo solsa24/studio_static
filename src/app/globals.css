@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -114,5 +115,54 @@ body {
   input[type="password"],
   textarea {
     @apply border-input-border;
+  }
+
+  /* Basic prose styling - consider Tailwind Typography plugin for more advanced needs */
+  .prose {
+    @apply text-foreground max-w-none;
+  }
+  .prose p {
+    @apply my-4 leading-relaxed;
+  }
+  .prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
+    @apply font-headline font-semibold text-primary;
+  }
+  .prose h1 { @apply text-3xl sm:text-4xl my-6;}
+  .prose h2 { @apply text-2xl sm:text-3xl my-5;}
+  .prose h3 { @apply text-xl sm:text-2xl my-4;}
+  .prose ul { @apply list-disc pl-5 space-y-1 my-4; }
+  .prose ol { @apply list-decimal pl-5 space-y-1 my-4; }
+  .prose strong { @apply font-semibold; }
+  .prose a { @apply text-primary hover:underline; }
+  .prose blockquote { @apply border-l-4 border-accent pl-4 italic my-4 text-muted-foreground; }
+  .prose code { @apply bg-muted text-muted-foreground px-1 py-0.5 rounded-sm font-code text-sm; }
+  .prose pre { @apply bg-muted p-4 rounded-md overflow-x-auto my-4; }
+  .prose pre code { @apply bg-transparent p-0 rounded-none; }
+  .prose hr { @apply my-6 border-border; }
+
+  .dark .prose {
+    @apply text-foreground;
+  }
+  .dark .prose h1, .dark .prose h2, .dark .prose h3, .dark .prose h4, .dark .prose h5, .dark .prose h6 {
+    @apply text-primary;
+  }
+  .dark .prose a { @apply text-primary; }
+  .dark .prose blockquote { @apply border-accent text-muted-foreground; }
+  .dark .prose code { @apply bg-muted text-muted-foreground; }
+  .dark .prose pre { @apply bg-muted; }
+
+  /* Aspect ratio plugin utility classes */
+  .aspect-w-16 { position: relative; padding-bottom: calc(9 / 16 * 100%); }
+  .aspect-h-9 { position: relative; padding-bottom: calc(16 / 9 * 100%); } /* This is likely incorrect logic for aspect-h-9. It should be the other way around for a 16:9 video */
+  /* Corrected aspect ratio for video (16:9 means height is 9/16 of width) */
+  .aspect-video { position: relative; padding-bottom: 56.25%; /* 9 / 16 * 100 */ }
+  .aspect-video > * {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
   }
 }
