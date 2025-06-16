@@ -8,7 +8,7 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Search, Info, ServerCrash, UtensilsCrossed, Loader2 } from 'lucide-react';
 
-const API_BASE_URL = "https://www.themealdb.com/api/json/v1/1";
+ const API_BASE_URL = "https://www.themealdb.com/api/json/v1/1";
 
 export default function HomePage() {
   const [searchTerm, setSearchTerm] = useState('');
