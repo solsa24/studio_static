@@ -100,9 +100,9 @@ export default function HomePage() {
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground flex flex-col items-center p-4 sm:p-6 lg:p-8 font-body">
+    <div className="min-h-screen bg-background text-foreground flex flex-col items-center p-4 sm:p-6 lg:p-8 5font-body">
       <header className="w-full max-w-4xl text-center my-8 sm:my-12">
-        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-headline font-bold text-primary mb-3">Recipe Radar</h1>
+        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-headline font-bold text-primary mb-3"> Recipe Radar</h1>
         <p className="text-md sm:text-lg text-muted-foreground">
           Discover delicious recipes by ingredient. Start typing below!
         </p>
@@ -110,7 +110,7 @@ export default function HomePage() {
 
       <form onSubmit={handleFormSubmit} className="w-full max-w-xl mb-10 sm:mb-12 flex flex-col items-center gap-3">
         <label htmlFor="recipeSearchInput" className="block text-md font-medium text-foreground mb-2 self-start">
-          What do you have in your fridge?
+          What do you have in Fridge?
         </label>
         <div className="w-full flex items-center gap-3">
           <Input
